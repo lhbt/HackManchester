@@ -10,9 +10,8 @@ namespace Heisenberg
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "DefaultActionApi",
+                routeTemplate: "api/{controller}/{action}"
             );
 
             config.Routes.MapHttpRoute(
@@ -20,6 +19,7 @@ namespace Heisenberg
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new {id = RouteParameter.Optional}
                 );
+
         }
     }
 }
