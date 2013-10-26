@@ -44,7 +44,8 @@ namespace Heisenberg.Twitter
         {
             var service = Authorise();
 
-            var options = new SendTweetOptions{ Status = message};
+            var options = new SendTweetOptions();
+            options.Status = message;
             service.SendTweet(options);
         }
 

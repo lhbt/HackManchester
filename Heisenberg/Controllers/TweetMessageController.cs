@@ -9,7 +9,7 @@ namespace Heisenberg.Controllers
         {
             var twitterApiWrapper = new TwitterApiWrapper();
 
-            twitterApiWrapper.TweetMessage("Test tweet");
+            twitterApiWrapper.TweetMessage("Test tweet #HackRooms");
         }
     }
 }
