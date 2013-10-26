@@ -1,13 +1,13 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Heisenberg.Models
+namespace Heisenberg.Domain
 {
     [DataContract]
     public class TeamMember
     {
         [DataMember(Name = "username")]
         public string Username { get; set; }
-        
+
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
@@ -15,7 +15,7 @@ namespace Heisenberg.Models
         {
             unchecked
             {
-                return ((Username != null ? Username.GetHashCode() : 0)*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                return ((Username != null ? Username.GetHashCode() : 0) * 397) ^ (Name != null ? Name.GetHashCode() : 0);
             }
         }
     }
