@@ -10,31 +10,33 @@ namespace Heisenberg.GitHub
 {
     public class GitHubParser : ISourceControlParser
     {
+        private Dictionary<string, string> _knownLanguages;
+
         public GitHubParser(string repoPath)
         {
             Repository = new Repository(repoPath);
+            _knownLanguages = new Dictionary<string, string>
+            {
+                { "cs", "c#" },
+                { "js", "javascript" },
+                { "html", "HTML"},
+                { "cshtml", "razor" },
+                { "xaml", "WPF" }
+            };
         }
 
         public Repository Repository { get; private set; }
 
-        public IEnumerable<string> GetLanguagesUsed()
+        public List<string> GetLanguagesUsed()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<string> GetFilesList()
-        {
-            return Repository.Index.Entries;
+            return (from file in GetFilesList() 
+                    where _knownLanguages.Keys.Contains(file.Split('.').Last()) 
+                    select _knownLanguages[file.Split('.').Last()]).Distinct().ToList();
         }
 
         public int GetNumberOfCommitsWithKeywordInComment(string keyword)
         {
             throw new System.NotImplementedException();
-        }
-
-        public int GetNumberOfCommitsInTheLastHour()
-        {
-            return GetCommits().Count(commit => (DateTime.Now - commit.TimeCommited).Minutes <= 60);
         }
 
         public int GetAmountOfLinesOfCode()
@@ -52,19 +54,24 @@ namespace Heisenberg.GitHub
             var revWalk = new PlotWalk(Repository);
             revWalk.markStart(((GitSharp.Core.Repository)Repository).getAllRefsByPeeledObjectId().Keys.Select(revWalk.parseCommit));
 
-            var commits = new List<CommitWrapper>();
-            foreach (var commit in revWalk)
-            {
-                var tmp = commit.AsCommit(revWalk);
-                
-                commits.Add(new CommitWrapper
+            return (from commit in revWalk
+                let tmp = commit.AsCommit(revWalk)
+                select new CommitWrapper
                 {
-                    Author = commit.getAuthorIdent().EmailAddress,
-                    Comment = commit.getFullMessage(),
+                    Author = commit.getAuthorIdent().EmailAddress, 
+                    Comment = commit.getFullMessage(), 
                     TimeCommited = tmp.Author.When.MillisToUtcDateTime().ToLocalTime()
-                });
-            }
-            return commits;
+                }).ToList();
+        }
+
+        public List<string> GetFilesList()
+        {
+            return Repository.Index.Entries.ToList();
+        }
+
+        public int GetNumberOfCommitsInTheLastHour()
+        {
+            return GetCommits().Count(commit => (DateTime.Now - commit.TimeCommited).Minutes <= 60);
         }
     }
 }
