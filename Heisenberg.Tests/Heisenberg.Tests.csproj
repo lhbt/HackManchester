@@ -84,6 +84,7 @@
     <ProjectReference Include="..\Heisenberg.Twitter\Heisenberg.Twitter.csproj">
       <Project>{84689e36-6c2c-44ad-acc8-0a1be140cd1b}</Project>
       <Name>Heisenberg.Twitter</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Heisenberg.SourceControlService\Heisenberg.SourceControlService.csproj">
       <Project>{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}</Project>
       <Name>Heisenberg.SourceControlService</Name>

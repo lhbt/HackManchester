@@ -52,7 +52,6 @@ namespace Heisenberg.GitHub
             var files = new List<string>();
 
 
-
             return files;
         }
 
