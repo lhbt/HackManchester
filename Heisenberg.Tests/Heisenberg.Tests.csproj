@@ -71,7 +71,6 @@
   <ItemGroup>
     <Compile Include="GitHubTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

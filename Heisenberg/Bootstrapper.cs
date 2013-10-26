@@ -1,4 +1,6 @@
 using System.Web.Http;
+using Heisenberg.Domain.Interfaces;
+using Heisenberg.Twitter;
 using Microsoft.Practices.Unity;
 
 namespace Heisenberg
@@ -16,8 +18,7 @@ namespace Heisenberg
         {
             var container = new UnityContainer();
 
-            // register all your components with the container here
-            // e.g. container.RegisterType<ITestService, TestService>();            
+            container.RegisterType<ISocialMediaWrapper, TwitterApiWrapper>();
 
             return container;
         }
