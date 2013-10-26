@@ -1,4 +1,4 @@
-﻿var heisenbergControllers = angular.module('heisenbergControllers', []);
+﻿var heisenbergControllers = angular.module('heisenbergControllers', ['heisenbergServices']);
 
 heisenbergControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
   function ($scope, $routeParams) {

@@ -1,7 +1,8 @@
-﻿heisenbergControllers.controller('DashboardCtrl', function DashboardCtrl($scope, $http) {
-    $http.get('App/Dashboard/TeamMembers.json').success(function (data) {
-        $scope.teamMembers = data;
-    });
-
+﻿heisenbergControllers.controller('DashboardCtrl', ['$scope', 'TeamMember', function DashboardCtrl($scope, TeamMember) {
+    $scope.teamMembers = TeamMember.query();
     $scope.orderProp = 'name';
-});
+
+    $scope.update = function() {
+        $scope.teamMembers = TeamMember.query();
+    };
+}]);
