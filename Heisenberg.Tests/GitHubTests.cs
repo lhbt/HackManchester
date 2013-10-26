@@ -1,4 +1,5 @@
-﻿using Heisenberg.GitHub;
+﻿using System.Linq;
+using Heisenberg.GitHub;
 using NUnit.Framework;
 
 namespace Heisenberg.Tests
@@ -29,11 +30,11 @@ namespace Heisenberg.Tests
         }
 
         [Test]
-        public void CanGetNumberOfFiles()
+        public void CanGetFilesList()
         {
-            var files = _parser.GetFiles();
+            var files = _parser.GetFilesList();
             Assert.That(files, Is.Not.Null);
-            Assert.That(files.Count, Is.GreaterThan(0));
+            Assert.That(files.Count(), Is.GreaterThan(0));
         }
     }
 }
