@@ -71,6 +71,10 @@
       <Project>{511993BC-3B07-48CB-AD31-66DFE8E0E8CC}</Project>
       <Name>Heisenberg.GitHub</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Heisenberg.SourceControlService\Heisenberg.SourceControlService.csproj">
+      <Project>{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}</Project>
+      <Name>Heisenberg.SourceControlService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
