@@ -1,5 +1,5 @@
-﻿using Heisenberg.Twitter;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Heisenberg.Twitter;
 
 namespace Heisenberg.Controllers
 {

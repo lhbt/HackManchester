@@ -140,6 +140,7 @@
     <Content Include="App\Dashboard\Dashboard.js" />
     <Content Include="App\HeisenbergApp.js" />
     <Content Include="App\Partials\Dashboard.html" />
+    <Content Include="App\Services.js" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -617,7 +618,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Heisenberg.Twitter\Heisenberg.Twitter.csproj">
-      <Project>{84689e36-6c2c-44ad-acc8-0a1be140cd1b}</Project>
+      <Project>{84689E36-6C2C-44AD-ACC8-0A1BE140CD1B}</Project>
       <Name>Heisenberg.Twitter</Name>
     </ProjectReference>
   </ItemGroup>
