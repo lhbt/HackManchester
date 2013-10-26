@@ -17,6 +17,7 @@ namespace Heisenberg.GitHub
         public GitHubParser(string repoPath)
         {
             Repository = new Repository(repoPath);
+
             _knownLanguages = new Dictionary<string, string>
             {
                 { "cs", "c#" },
