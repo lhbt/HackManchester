@@ -17,8 +17,14 @@ namespace Heisenberg.Tests
         [Test]
         public void CanConnectToAGivenRepository()
         {
-            var repo = _parser.OpenRepo();
-            Assert.That(repo.Name, Is.EqualTo("HackManchester"));
+            const string repoPath = @"C:\Users\Laurent\Documents\GitHub\HackManchester";
+            Assert.That(_parser.OpenRepo(repoPath), Is.True);
+        }
+
+        [Test]
+        public void CanGetListOfCommits()
+        {
+            //var commits = _parser.GetCommits();
         }
     }
 }
