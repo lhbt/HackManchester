@@ -137,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Dashboard\Dashboard.js" />
-    <None Include="App\Dashboard\TeamMembers.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="App\HeisenbergApp.js" />
     <Content Include="App\Partials\Dashboard.html" />
     <Content Include="App\Services.js" />
@@ -617,6 +614,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Heisenberg.Twitter\Heisenberg.Twitter.csproj">
+      <Project>{84689E36-6C2C-44AD-ACC8-0A1BE140CD1B}</Project>
+      <Name>Heisenberg.Twitter</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
