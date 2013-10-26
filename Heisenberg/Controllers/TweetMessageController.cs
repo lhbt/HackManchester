@@ -1,15 +1,20 @@
 ﻿using System.Web.Http;
-using Heisenberg.Twitter;
+using Heisenberg.Domain.Interfaces;
 
 namespace Heisenberg.Controllers
 {
     public class TweetMessageController : ApiController
     {
+        private readonly ISocialMediaWrapper _socialMediaWrapper;
+
+        public TweetMessageController(ISocialMediaWrapper socialMediaWrapper)
+        {
+            _socialMediaWrapper = socialMediaWrapper;
+        }
+
         public void Get()
         {
-            var twitterApiWrapper = new TwitterApiWrapper();
-
-            twitterApiWrapper.TweetMessage("Test tweet #HackRooms");
+            _socialMediaWrapper.SendStatusUpdate("Test tweet #HackRooms");
         }
     }
 }
