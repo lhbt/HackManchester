@@ -1,45 +1,65 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TweetSharp;
 
 namespace Heisenberg.Twitter
 {
     public class TwitterApiWrapper
     {
-        private string _consumerKey;
-        private string _consumerSecret; 
+        private readonly string _consumerKey;
+        private readonly string _consumerSecret;
+        private readonly string _accessToken;
+        private readonly string _accessTokenSecret;
 
         public TwitterApiWrapper()
         {
             _consumerKey = ConfigurationManager.AppSettings["ConsumerKey"];
             _consumerSecret = ConfigurationManager.AppSettings["ConsumerSecret"];
-
+            _accessToken = ConfigurationManager.AppSettings["AccessToken"];
+            _accessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"];
         }
 
-        private void Authorise()
+        private ITwitterService Authorise()
         {
             // In v1.1, all API calls require authentication
             var service = new TwitterService(_consumerKey, _consumerSecret);
 
-            // Step 1 - Retrieve an OAuth Request Token
-            OAuthRequestToken requestToken = service.GetRequestToken();
+            service.AuthenticateWith(_accessToken, _accessTokenSecret);
 
-            // Step 2 - Redirect to the OAuth Authorization URL
-            Uri uri = service.GetAuthorizationUri(requestToken);
-            Process.Start(uri.ToString());
-
-            // Step 3 - Exchange the Request Token for an Access Token
-            string verifier = "123456"; // <-- This is input into your application by your user
-            OAuthAccessToken access = service.GetAccessToken(requestToken, verifier);
-
-            // Step 4 - User authenticates using the Access Token
-            service.AuthenticateWith(access.Token, access.TokenSecret);
-            var result = service.Search(new SearchOptions { Q = "#hackmanchester" });
+            return service;
         }
+
+        public TwitterStatusResponse QueryHashtag(string hashTag)
+        {
+            var service = Authorise();
+
+            var result = service.Search(new SearchOptions { Q = hashTag });
+
+            return Map(result);
+        }
+
+        public TwitterStatusResponse Map(TwitterSearchResult result)
+        {
+            var response = new TwitterStatusResponse();
+
+            result.Statuses.ToList().ForEach(x => response.Statuses.Add(x.Text));
+
+            return response;
+        }
+        
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class TwitterStatusResponse
+    {
+        public TwitterStatusResponse()
+        {
+            Statuses = new List<string>();
+        }
+
+        [JsonProperty("Statuses")]
+        public List<string> Statuses;
     }
 }
