@@ -1,6 +1,4 @@
 using System.Web.Http;
-using Heisenberg.Domain.Interfaces;
-using Heisenberg.Twitter;
 using Microsoft.Practices.Unity;
 
 namespace Heisenberg
@@ -18,7 +16,7 @@ namespace Heisenberg
         {
             var container = new UnityContainer();
 
-            container.RegisterType<ISocialMediaWrapper, TwitterApiWrapper>();
+            Ioc.Unity.Bootstrapper.RegisterTypesTo(container);
 
             return container;
         }
