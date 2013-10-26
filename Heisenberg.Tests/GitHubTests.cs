@@ -13,7 +13,7 @@ namespace Heisenberg.Tests
         [SetUp]
         public void Setup()
         {
-            var repoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+            var repoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Heisenberg.Tests"; 
             _parser = new GitHubParser(repoPath);    
         }
 
