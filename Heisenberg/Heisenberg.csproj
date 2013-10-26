@@ -133,6 +133,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Dashboard\Dashboard.js" />
+    <None Include="App\Dashboard\TeamMembers.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
