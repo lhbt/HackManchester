@@ -1,25 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GitSharp;
+using GitSharp.Core.RevPlot;
 
 namespace Heisenberg.GitHub
 {
     public class GitHubParser : GitHubApiWrapper
     {
-        private Repository _repo;
-
-        public GitHubParser()
+        public GitHubParser(string repoPath)
         {
-            //_repo = Repository.FindRepository();
+            Repository = new Repository(repoPath);
         }
 
-        public bool OpenRepo(string repoPath)
+        public Repository Repository { get; private set; }
+
+        public List<GitSharp.Core.Commit> GetCommits()
         {
-            return Repository.IsValid(repoPath);
+            var mRevwalk = new PlotWalk(Repository);
+            mRevwalk.markStart(((GitSharp.Core.Repository)Repository).getAllRefsByPeeledObjectId().Keys.Select(mRevwalk.parseCommit));
+
+            return mRevwalk.Select(commit => commit.AsCommit(mRevwalk)).Select(dummy => dummy).ToList();
         }
 
-        public List<Commit> GetCommits()
+        public List<string> GetFiles()
         {
-            throw new System.NotImplementedException();
+            var files = new List<string>();
+
+            return files;
         }
     }
 }
