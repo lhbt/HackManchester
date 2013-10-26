@@ -6,6 +6,16 @@
                 <h2>Dashboard</h2>
             </div>
             
+            <div>
+                <ul ng-repeat="tweet in tweets">
+                    <li>
+                        {{tweet.Timestamp}}
+                        <p>{{tweet.Author}}</p>
+                        <p>{{tweet.Text}}</p>
+                    </li>
+                </ul>
+            </div>
+
             <div >
                 <ul>
                     <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">

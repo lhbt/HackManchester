@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Heisenberg.Domain;
 using Heisenberg.Domain.Interfaces;
 using TweetSharp;
 
@@ -21,7 +22,7 @@ namespace Heisenberg.Twitter
             _accessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"];
         }
 
-        public IEnumerable<string> QueryHashtag(string hashTag)
+        public IEnumerable<Tweet> QueryHashtag(string hashTag)
         {
             var service = Authorise();
             var result = service.Search(new SearchOptions { Q = hashTag });
@@ -31,7 +32,7 @@ namespace Heisenberg.Twitter
         public void SendStatusUpdate(string message)
         {
             var service = Authorise();
-            var options = new SendTweetOptions {Status = message};
+            var options = new SendTweetOptions { Status = message };
             service.SendTweet(options);
         }
 
@@ -44,9 +45,9 @@ namespace Heisenberg.Twitter
             return service;
         }
 
-        private static IEnumerable<string> Map(TwitterSearchResult result)
+        private static IEnumerable<Tweet> Map(TwitterSearchResult result)
         {
-            return result.Statuses.Select(x => x.Text).ToList();
+            return result.Statuses.Select(x => new Tweet() { Text = x.Text, Timestamp = x.CreatedDate, Author = x.Author.ScreenName }).ToList();
         }
     }
 }
