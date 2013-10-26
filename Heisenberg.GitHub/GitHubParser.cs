@@ -24,7 +24,7 @@ namespace Heisenberg.GitHub
 
         public IEnumerable<string> GetFilesList()
         {
-            throw new System.NotImplementedException();
+            return Repository.Index.Entries;
         }
 
         public int GetNumberOfCommitsWithKeywordInComment(string keyword)

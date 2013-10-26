@@ -3,7 +3,7 @@ using System.Web.Http;
 
 namespace Heisenberg.Controllers
 {
-    public class TwitterController : ApiController
+    public class TwitterHashtagController : ApiController
     {
         public TwitterStatusResponse Get()
         {
