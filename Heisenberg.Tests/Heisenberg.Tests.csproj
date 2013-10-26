@@ -76,6 +76,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Heisenberg.Domain\Heisenberg.Domain.csproj">
+      <Project>{cf24f456-0b4a-4390-a513-ce060566f8df}</Project>
+      <Name>Heisenberg.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Heisenberg.GitHub\Heisenberg.GitHub.csproj">
       <Project>{511993BC-3B07-48CB-AD31-66DFE8E0E8CC}</Project>
       <Name>Heisenberg.GitHub</Name>

@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using GitSharp;
 using GitSharp.Core.RevPlot;
 using GitSharp.Core.Util;
+using Heisenberg.Domain;
 using Heisenberg.SourceControlService;
 
 namespace Heisenberg.GitHub
@@ -52,14 +53,14 @@ namespace Heisenberg.GitHub
             return (DateTime.Now - Repository.Head.CurrentCommit.CommitDate.DateTime).Minutes;
         }
 
-        public List<CommitWrapper> GetCommits()
+        public List<RepositoryCommit> GetCommits()
         {
             var revWalk = new PlotWalk(Repository);
             revWalk.markStart(((GitSharp.Core.Repository)Repository).getAllRefsByPeeledObjectId().Keys.Select(revWalk.parseCommit));
 
             return (from commit in revWalk
                 let tmp = commit.AsCommit(revWalk)
-                select new CommitWrapper
+                select new RepositoryCommit()
                 {
                     Author = commit.getAuthorIdent().EmailAddress, 
                     Comment = commit.getFullMessage(), 

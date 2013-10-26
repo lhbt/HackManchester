@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Heisenberg.SourceControlService
+namespace Heisenberg.Domain
 {
-    public class CommitWrapper
+    public class RepositoryCommit
     {
         public string Author { get; set; }
         public DateTime TimeCommited { get; set; }

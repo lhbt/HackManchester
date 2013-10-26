@@ -63,6 +63,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Heisenberg.Domain\Heisenberg.Domain.csproj">
+      <Project>{CF24F456-0B4A-4390-A513-CE060566F8DF}</Project>
+      <Name>Heisenberg.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Heisenberg.SourceControlService\Heisenberg.SourceControlService.csproj">
       <Project>{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}</Project>
       <Name>Heisenberg.SourceControlService</Name>
