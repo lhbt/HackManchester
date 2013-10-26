@@ -6,7 +6,8 @@ namespace Heisenberg.Controllers
 {
     public class TeamMembersController : ApiController
     {
-        public IEnumerable<TeamMember> Get()
+        
+        public IEnumerable<TeamMember> GetAll()
         {
             ISet<TeamMember> teamMembers = new HashSet<TeamMember>();
             teamMembers.Add(new TeamMember {Name = "Rick", Username = "MrCochese"});
