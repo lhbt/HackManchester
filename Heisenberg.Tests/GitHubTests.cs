@@ -9,6 +9,7 @@ namespace Heisenberg.Tests
     {
         private GitHubParser _parser;
         const string RepoPath = @"C:\Users\Laurent\Documents\GitHub\HackManchester";
+
         [SetUp]
         public void Setup()
         {
@@ -56,6 +57,18 @@ namespace Heisenberg.Tests
             Assert.That(languagesUsed.Contains("c#"), Is.True);
             Assert.That(languagesUsed.Contains("javascript"), Is.True);
             Assert.That(languagesUsed.Contains("razor"), Is.True);
+        }
+
+        [Test]
+        public void CanGetNumberOfCommitsWhichCommentContainsAKeyword()
+        {
+            Assert.That(_parser.GetNumberOfCommitsWithKeywordInComment("fix"), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void CanGetAmountOfLinesOfCode()
+        {
+            Assert.That(_parser.GetAmountOfLinesOfCode(), Is.GreaterThan(0));
         }
     }
 }

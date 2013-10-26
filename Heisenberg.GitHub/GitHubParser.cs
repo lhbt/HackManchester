@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using GitSharp;
 using GitSharp.Core.RevPlot;
 using GitSharp.Core.Util;
@@ -10,7 +12,7 @@ namespace Heisenberg.GitHub
 {
     public class GitHubParser : ISourceControlParser
     {
-        private Dictionary<string, string> _knownLanguages;
+        private readonly Dictionary<string, string> _knownLanguages;
 
         public GitHubParser(string repoPath)
         {
@@ -29,19 +31,19 @@ namespace Heisenberg.GitHub
 
         public List<string> GetLanguagesUsed()
         {
-            return (from file in GetFilesList() 
-                    where _knownLanguages.Keys.Contains(file.Split('.').Last()) 
+            return (from file in GetFilesList()
+                    where IsKnownLanguage(file)
                     select _knownLanguages[file.Split('.').Last()]).Distinct().ToList();
         }
 
         public int GetNumberOfCommitsWithKeywordInComment(string keyword)
         {
-            throw new System.NotImplementedException();
+            return GetCommits().Count(commit => commit.Comment.Contains(keyword));
         }
 
         public int GetAmountOfLinesOfCode()
         {
-            throw new System.NotImplementedException();
+            return GetFilesList().Where(IsKnownLanguage).Sum(file => File.ReadAllLines(Repository.Directory.Replace(".git", "") + "\\" + file).Length);
         }
 
         public int GetAmountOfMinutesSinceLastCommit()
@@ -67,6 +69,11 @@ namespace Heisenberg.GitHub
         public List<string> GetFilesList()
         {
             return Repository.Index.Entries.ToList();
+        }
+
+        public bool IsKnownLanguage(string file)
+        {
+            return _knownLanguages.Keys.Contains(file.Split('.').Last());
         }
 
         public int GetNumberOfCommitsInTheLastHour()
