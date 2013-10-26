@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/Scripts/angular.js")
-    @Scripts.Render("~/App/Dashboard/Dashboard.js")
+
     <link href="/Content/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
-<body ng-controller="DashboardCtrl">
+<body>
     @RenderBody()
 
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/angular-route.js")
+    @Scripts.Render("~/App/HeisenbergApp.js")
+    @Scripts.Render("~/App/Dashboard/Dashboard.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
