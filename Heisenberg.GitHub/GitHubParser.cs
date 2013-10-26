@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Pipes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IronGitHub;
-using IronGitHub.Apis;
-using IronGitHub.Entities;
+﻿using System.Collections.Generic;
+using GitSharp;
 
 namespace Heisenberg.GitHub
 {
     public class GitHubParser : GitHubApiWrapper
     {
+        private Repository _repo;
+
         public GitHubParser()
         {
-            this.CreateGitHubApi();
+            //_repo = Repository.FindRepository();
         }
 
-        public Repository OpenRepo()
+        public bool OpenRepo(string repoPath)
         {
-            return Api.Repositories.Get("lhbt", "HackManchester").Result;
+            return Repository.IsValid(repoPath);
+        }
+
+        public List<Commit> GetCommits()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
