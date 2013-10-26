@@ -5,7 +5,7 @@ namespace Heisenberg.Controllers
 {
     public class TwitterController : ApiController
     {
-        public TwitterStatusResponse Get()
+        public TwitterStatusResponse Hashtag()
         {
             var twitterApiWrapper = new TwitterApiWrapper();
 
