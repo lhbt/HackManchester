@@ -1,0 +1,4 @@
+HackManchester
+==============
+
+HackManchester Challenge
