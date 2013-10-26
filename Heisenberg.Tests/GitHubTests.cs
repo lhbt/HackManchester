@@ -48,5 +48,14 @@ namespace Heisenberg.Tests
         {
             Assert.That(_parser.GetNumberOfCommitsInTheLastHour(), Is.GreaterThan(0));
         }
+
+        [Test]
+        public void CanGetAListOfLanguagesUsed()
+        {
+            var languagesUsed = _parser.GetLanguagesUsed();
+            Assert.That(languagesUsed.Contains("c#"), Is.True);
+            Assert.That(languagesUsed.Contains("javascript"), Is.True);
+            Assert.That(languagesUsed.Contains("razor"), Is.True);
+        }
     }
 }
