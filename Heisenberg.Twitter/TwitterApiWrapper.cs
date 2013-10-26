@@ -40,6 +40,15 @@ namespace Heisenberg.Twitter
             return Map(result);
         }
 
+        public void TweetMessage(string message)
+        {
+            var service = Authorise();
+
+            var options = new SendTweetOptions();
+            options.Status = message;
+            service.SendTweet(options);
+        }
+
         public TwitterStatusResponse Map(TwitterSearchResult result)
         {
             var response = new TwitterStatusResponse();

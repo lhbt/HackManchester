@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.Twitter", "Heise
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.SourceControlService", "Heisenberg.SourceControlService\Heisenberg.SourceControlService.csproj", "{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.Domain", "Heisenberg.Domain\Heisenberg.Domain.csproj", "{CF24F456-0B4A-4390-A513-CE060566F8DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7F6E3FA-2B91-4A5B-859E-97F061D1D0F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF24F456-0B4A-4390-A513-CE060566F8DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF24F456-0B4A-4390-A513-CE060566F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF24F456-0B4A-4390-A513-CE060566F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF24F456-0B4A-4390-A513-CE060566F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

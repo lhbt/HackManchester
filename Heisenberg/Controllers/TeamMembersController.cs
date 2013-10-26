@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using Heisenberg.Models;
+using Heisenberg.Domain;
 
 namespace Heisenberg.Controllers
 {
     public class TeamMembersController : ApiController
     {
-        
         public IEnumerable<TeamMember> GetAll()
         {
             ISet<TeamMember> teamMembers = new HashSet<TeamMember>();
