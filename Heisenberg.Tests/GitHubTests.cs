@@ -1,8 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Security.Policy;
 using Heisenberg.GitHub;
 using NUnit.Framework;
 
@@ -12,13 +9,12 @@ namespace Heisenberg.Tests
     public class GitHubTests
     {
         private GitHubParser _parser;
-        //const string RepoPath = @"C:\Users\Laurent\Documents\GitHub\HackManchester";
 
         [SetUp]
         public void Setup()
         {
-            var RepoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
-            _parser = new GitHubParser(RepoPath);    
+            var repoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
+            _parser = new GitHubParser(repoPath);    
         }
 
         [Test]
