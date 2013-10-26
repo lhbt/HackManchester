@@ -137,9 +137,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Dashboard\Dashboard.js" />
-    <None Include="App\Dashboard\TeamMembers.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="App\HeisenbergApp.js" />
     <Content Include="App\Partials\Dashboard.html" />
     <Content Include="Content\bootstrap-datepicker.css" />
