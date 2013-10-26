@@ -1,12 +1,12 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Heisenberg.Domain.Interfaces;
 using TweetSharp;
 
 namespace Heisenberg.Twitter
 {
-    public class TwitterApiWrapper
+    public class TwitterApiWrapper : ISocialMediaWrapper
     {
         private readonly string _consumerKey;
         private readonly string _consumerSecret;
@@ -21,9 +21,22 @@ namespace Heisenberg.Twitter
             _accessTokenSecret = ConfigurationManager.AppSettings["AccessTokenSecret"];
         }
 
+        public IEnumerable<string> QueryHashtag(string hashTag)
+        {
+            var service = Authorise();
+            var result = service.Search(new SearchOptions { Q = hashTag });
+            return Map(result);
+        }
+
+        public void SendStatusUpdate(string message)
+        {
+            var service = Authorise();
+            var options = new SendTweetOptions {Status = message};
+            service.SendTweet(options);
+        }
+
         private ITwitterService Authorise()
         {
-            // In v1.1, all API calls require authentication
             var service = new TwitterService(_consumerKey, _consumerSecret);
 
             service.AuthenticateWith(_accessToken, _accessTokenSecret);
@@ -31,44 +44,9 @@ namespace Heisenberg.Twitter
             return service;
         }
 
-        public TwitterStatusResponse QueryHashtag(string hashTag)
+        private static IEnumerable<string> Map(TwitterSearchResult result)
         {
-            var service = Authorise();
-
-            var result = service.Search(new SearchOptions { Q = hashTag });
-
-            return Map(result);
+            return result.Statuses.Select(x => x.Text).ToList();
         }
-
-        public void TweetMessage(string message)
-        {
-            var service = Authorise();
-
-            var options = new SendTweetOptions();
-            options.Status = message;
-            service.SendTweet(options);
-        }
-
-        public TwitterStatusResponse Map(TwitterSearchResult result)
-        {
-            var response = new TwitterStatusResponse();
-
-            result.Statuses.ToList().ForEach(x => response.Statuses.Add(x.Text));
-
-            return response;
-        }
-        
-    }
-
-    [JsonObject(MemberSerialization.OptIn)]
-    public class TwitterStatusResponse
-    {
-        public TwitterStatusResponse()
-        {
-            Statuses = new List<string>();
-        }
-
-        [JsonProperty("Statuses")]
-        public List<string> Statuses;
     }
 }

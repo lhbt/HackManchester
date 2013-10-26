@@ -17,6 +17,7 @@ namespace Heisenberg.GitHub
         public GitHubParser(string repoPath)
         {
             Repository = new Repository(repoPath);
+
             _knownLanguages = new Dictionary<string, string>
             {
                 { "cs", "c#" },
@@ -43,7 +44,7 @@ namespace Heisenberg.GitHub
 
         public int GetAmountOfLinesOfCode()
         {
-            return GetFilesList().Where(IsKnownLanguage).Sum(file => File.ReadAllLines(Repository.Directory.Replace(".git", "") + "\\" + file).Length);
+            return GetFilesList().Where(IsKnownLanguage).Sum(file => File.ReadAllLines(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName.Replace(".git", "") + "\\" + file).Length);
         }
 
         public int GetAmountOfMinutesSinceLastCommit()

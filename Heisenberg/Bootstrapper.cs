@@ -16,8 +16,7 @@ namespace Heisenberg
         {
             var container = new UnityContainer();
 
-            // register all your components with the container here
-            // e.g. container.RegisterType<ITestService, TestService>();            
+            Ioc.Unity.Bootstrapper.RegisterTypesTo(container);
 
             return container;
         }

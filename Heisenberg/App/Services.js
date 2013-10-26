@@ -6,3 +6,10 @@ heisenbergServices.factory('TeamMember', ['$resource',
           query: { method: 'GET', params: {}, isArray: true }
       });
   }]);
+
+heisenbergServices.factory('Tweets', ['$resource',
+  function ($resource) {
+      return $resource('api/twitterhashtag/get', {}, {
+          query: { method: 'GET', params: {}, isArray: true }
+      });
+  }]);
