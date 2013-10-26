@@ -137,8 +137,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Dashboard\Dashboard.js" />
+    <None Include="App\Dashboard\TeamMembers.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="App\HeisenbergApp.js" />
     <Content Include="App\Partials\Dashboard.html" />
+    <Content Include="App\Services.js" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -604,7 +608,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Twitter\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -614,12 +617,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Heisenberg.Twitter\Heisenberg.Twitter.csproj">
-      <Project>{84689e36-6c2c-44ad-acc8-0a1be140cd1b}</Project>
-      <Name>Heisenberg.Twitter</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
