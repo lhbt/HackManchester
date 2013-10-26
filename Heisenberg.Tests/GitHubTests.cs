@@ -36,5 +36,17 @@ namespace Heisenberg.Tests
             Assert.That(files, Is.Not.Null);
             Assert.That(files.Count(), Is.GreaterThan(0));
         }
+
+        [Test]
+        public void CanKnowHowLongAgoWasTheLastCommit()
+        {
+            Assert.That(_parser.GetAmountOfMinutesSinceLastCommit(), Is.TypeOf<int>());
+        }
+
+        [Test]
+        public void CanGetNumberOfCommitsInTheLastHour()
+        {
+            Assert.That(_parser.GetNumberOfCommitsInTheLastHour(), Is.GreaterThan(0));
+        }
     }
 }

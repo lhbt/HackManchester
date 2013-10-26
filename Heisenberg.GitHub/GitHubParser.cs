@@ -34,7 +34,7 @@ namespace Heisenberg.GitHub
 
         public int GetNumberOfCommitsInTheLastHour()
         {
-            throw new System.NotImplementedException();
+            return GetCommits().Count(commit => (DateTime.Now - commit.TimeCommited).Minutes <= 60);
         }
 
         public int GetAmountOfLinesOfCode()
@@ -44,15 +44,7 @@ namespace Heisenberg.GitHub
 
         public int GetAmountOfMinutesSinceLastCommit()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public List<string> GetFiles()
-        {
-            var files = new List<string>();
-
-
-            return files;
+            return (DateTime.Now - Repository.Head.CurrentCommit.CommitDate.DateTime).Minutes;
         }
 
         public List<CommitWrapper> GetCommits()
@@ -69,7 +61,7 @@ namespace Heisenberg.GitHub
                 {
                     Author = commit.getAuthorIdent().EmailAddress,
                     Comment = commit.getFullMessage(),
-                    TimeCommited = tmp.Author.When.MillisToUtcDateTime()
+                    TimeCommited = tmp.Author.When.MillisToUtcDateTime().ToLocalTime()
                 });
             }
             return commits;
