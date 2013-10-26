@@ -636,9 +636,9 @@
       <Project>{cf24f456-0b4a-4390-a513-ce060566f8df}</Project>
       <Name>Heisenberg.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Heisenberg.Twitter\Heisenberg.Twitter.csproj">
-      <Project>{84689E36-6C2C-44AD-ACC8-0A1BE140CD1B}</Project>
-      <Name>Heisenberg.Twitter</Name>
+    <ProjectReference Include="..\Heisenberg.Ioc.Unity\Heisenberg.Ioc.Unity.csproj">
+      <Project>{9df4d7da-48d7-471b-a554-8b89b215f248}</Project>
+      <Name>Heisenberg.Ioc.Unity</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
