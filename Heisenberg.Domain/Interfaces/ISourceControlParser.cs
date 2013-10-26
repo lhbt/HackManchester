@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Heisenberg.Domain;
 
-namespace Heisenberg.SourceControlService
+namespace Heisenberg.Domain.Interfaces
 {
     public interface ISourceControlParser
     {

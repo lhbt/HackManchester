@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ISourceControlParser.cs" />
     <Compile Include="RepositoryCommit.cs" />
     <Compile Include="Interfaces\ISocialMediaWrapper.cs" />
     <Compile Include="TeamMember.cs" />
