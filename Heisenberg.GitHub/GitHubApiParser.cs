@@ -125,12 +125,12 @@ namespace Heisenberg.GitHub
 
         public int GetNumberOfCommitsWithKeywordInComment(string keyword)
         {
-            return GetCommits().Count(o => o.Comment.Contains("keyword"));
+            return _commits.Count(o => o.Comment.Contains(keyword));
         }
 
         public List<RepositoryCommit> GetCommitsMadeDuringTheLastHour()
         {
-            return GetCommits().Where(o => (DateTime.Now - o.TimeCommited).Minutes <= 60).ToList();
+            return _commits.Where(o => (DateTime.Now - o.TimeCommited).TotalMinutes <= 60).ToList();
         }
 
         public int GetAmountOfBytesOfCode()

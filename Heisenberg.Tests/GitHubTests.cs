@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Heisenberg.GitHub;
 using NUnit.Framework;
 
@@ -12,6 +13,7 @@ namespace Heisenberg.Tests
         public void Setup()
         {
             _parser = new GitHubApiParser("lhbt", "hackmanchester");
+            _parser.GetCommits();
         }
 
         [Test]
@@ -54,6 +56,12 @@ namespace Heisenberg.Tests
         public void CanGetAmountOfLinesOfCode()
         {
             Assert.That(_parser.GetAmountOfBytesOfCode(), Is.GreaterThan(0));
+        }
+
+        [Test]
+        public void CanGetCommitsFromTheLastHour()
+        {
+            Assert.That(_parser.GetCommitsMadeDuringTheLastHour().Any(o => (DateTime.Now - o.TimeCommited).TotalMinutes >= 60), Is.False);
         }
     }
 }
