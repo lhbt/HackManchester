@@ -41,6 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\ISourceControlParser.cs" />
+    <Compile Include="Messages\BuildSucceeded.cs" />
+    <Compile Include="Messaging\Event.cs" />
+    <Compile Include="Messaging\FakeBus.cs" />
+    <Compile Include="Messaging\IEventPublisher.cs" />
+    <Compile Include="Messaging\IHandles.cs" />
+    <Compile Include="Messaging\IMessage.cs" />
+    <Compile Include="Messaging\InfrastructureCrap\InfrastructureCrap.DontBotherReadingItsNotImportant.cs" />
     <Compile Include="RepositoryCommit.cs" />
     <Compile Include="Interfaces\ISocialMediaWrapper.cs" />
     <Compile Include="TeamMember.cs" />

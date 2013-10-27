@@ -1,22 +1,35 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Web.Http;
+using Heisenberg.Domain.Messages;
+using Heisenberg.Domain.Messaging;
 
 namespace Heisenberg.Controllers
 {
     public class NotificationsController : ApiController
     {
-        private static readonly ConcurrentBag<string> _statuses = new ConcurrentBag<string>(); 
+        private readonly IEventPublisher _eventPublisher;
+
+        public NotificationsController(IEventPublisher eventPublisher)
+        {
+            _eventPublisher = eventPublisher;
+        }
         
         public void BuildNotification(Notification notification)
         {
-            _statuses.Add(notification.Build.Status);
+            if (notification.Build.Status == "succeeded")
+            {
+                _eventPublisher.Publish(new BuildSucceeded());
+            }
+            else
+            {
+                _eventPublisher.Publish(new BuildFailed());
+            }
         }
 
         public IEnumerable<string> BuildStatuses()
         {
-            return _statuses.ToArray();
+            return new List<string>();
         }
     }
 
@@ -28,8 +41,6 @@ namespace Heisenberg.Controllers
 
         [DataMember(Name = "build")]
         public Build Build { get; set; }
-
-        
 
         [DataMember(Name = "url")]
         public string Url { get; set; }
