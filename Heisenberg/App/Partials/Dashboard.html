@@ -38,9 +38,24 @@
     </div>
 </div>
 <div class="row">
-    <div class="span8">
-        Recent deployments
-        <div ng-model="mostrecentbuildresults"></div>
+    <div>Recent deployments</div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Success</th>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mostrecentbuildresult in mostrecentbuildresults">
+                    <td>{{mostrecentbuildresult.Succeeded}}</td>
+                    <td>{{mostrecentbuildresult.Message}}</td>
+                    <td>{{mostrecentbuildresult.Timestamp}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
