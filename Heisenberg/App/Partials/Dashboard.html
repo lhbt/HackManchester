@@ -32,7 +32,7 @@
 </ul>
 <div class="row">
     <div class="span8">
-        <div ng-model="minutessincecommit">{{value}} minutes since commit</div>
+        <div>{{minutessincecommit}}</div>
         <div class="row">
             <div>
                 <table class="table table-striped">
@@ -46,10 +46,14 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="commit in commits">
-                            <td>{{commit.TimeComitted | date:'HH:mm Z'}}</td>
+                            <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
                             <td>{{commit.Author}}</td>
                             <td>{{commit.Comment}}</td>
-                            <td>{{commit.FilesModified}}></td>
+                            <td>
+                                <ul>
+                                    <li ng-repeat="file in commit.FilesModified">{{file}}</li>
+                                </ul>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
