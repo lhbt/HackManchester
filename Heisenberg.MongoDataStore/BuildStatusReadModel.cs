@@ -20,8 +20,6 @@ namespace Heisenberg.MongoDataStore
             var server = client.GetServer();
             MongoDatabase database = server.GetDatabase(url.DatabaseName);
             var buildResults =  database.GetCollection<BuildResultEntity>("BuildResults");
-            buildResults.EnsureIndex(new IndexKeysBuilder().Descending("Timestamp"));
-
             return buildResults;
         }
         
@@ -29,7 +27,7 @@ namespace Heisenberg.MongoDataStore
         {
             var collection = GetBuildResults();
 
-            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Ascending("Timestamp")).SetLimit(count);
+            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Descending("Timestamp")).SetLimit(count);
 
             IList<BuildResult> buildResults = new List<BuildResult>(count);
 
