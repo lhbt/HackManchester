@@ -17,11 +17,11 @@ namespace Heisenberg.Ioc.Unity
             container.RegisterType<ISourceControlParser, GitHubApiParser>
                 (new InjectionConstructor("lhbt", "hackmanchester"));
 
-            container.RegisterType<IBuildStatusReadModel, FakeBuildStatusReadModel>();
+            container.RegisterType<IBuildStatusReadModel, BuildStatusReadModel>();
             container.RegisterType<ITracer, Tracer>();
 
             var bus = new FakeBus();
-            var fakeReadModel = new FakeBuildStatusReadModel();
+            var fakeReadModel = new BuildStatusReadModel();
             bus.RegisterHandler<BuildSucceeded>(fakeReadModel.Handle);
             bus.RegisterHandler<BuildFailed>(fakeReadModel.Handle);
             
