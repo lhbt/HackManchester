@@ -36,9 +36,47 @@
 </table>
 <div class="row">
     <div class="span8">
-        Source Control Stuff
-        
+        <div>{{minutessincecommit}}</div>
+        <div class="row">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Author</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="commit in commits">
+                            <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
+                            <td>{{commit.Author}}</td>
+                            <td>{{commit.Comment}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
-
+<div class="row">
+    <div>Recent deployments</div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Success</th>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mostrecentbuildresult in mostrecentbuildresults">
+                    <td>{{mostrecentbuildresult.Succeeded}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Message}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Timestamp}}</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
 

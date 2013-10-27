@@ -12,16 +12,22 @@ namespace Heisenberg.MongoDataStore
 {
     public class BuildStatusReadModel : IBuildStatusReadModel, IHandles<BuildSucceeded>, IHandles<BuildFailed>
     {
-        public IEnumerable<BuildResult> GetMostRecentBuildResults(int count)
+        private MongoCollection<BuildResultEntity> GetBuildResults()
         {
             var connectionstring = ConfigurationManager.AppSettings.Get("MONGOLAB_URI");
             var url = new MongoUrl(connectionstring);
             var client = new MongoClient(url);
             var server = client.GetServer();
-            var database = server.GetDatabase(url.DatabaseName);
-            var collection = database.GetCollection<BuildResultEntity>("BuildResults");
+            MongoDatabase database = server.GetDatabase(url.DatabaseName);
+            var buildResults =  database.GetCollection<BuildResultEntity>("BuildResults");
+            return buildResults;
+        }
+        
+        public IEnumerable<BuildResult> GetMostRecentBuildResults(int count)
+        {
+            var collection = GetBuildResults();
 
-            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Descending("timestamp")).SetLimit(count);
+            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Descending("Timestamp")).SetLimit(count);
 
             IList<BuildResult> buildResults = new List<BuildResult>(count);
 
@@ -42,12 +48,7 @@ namespace Heisenberg.MongoDataStore
 
         public void Handle(BuildSucceeded message)
         {
-            var connectionstring = ConfigurationManager.AppSettings.Get("MONGOLAB_URI");
-            var url = new MongoUrl(connectionstring);
-            var client = new MongoClient(url);
-            var server = client.GetServer();
-            var database = server.GetDatabase(url.DatabaseName);
-            var collection = database.GetCollection<BuildResultEntity>("BuildResults");
+            var collection = GetBuildResults();
 
             var buildResultEntity = new BuildResultEntity
                                     {
@@ -62,12 +63,7 @@ namespace Heisenberg.MongoDataStore
 
         public void Handle(BuildFailed message)
         {
-            var connectionstring = ConfigurationManager.AppSettings.Get("MONGOLAB_URI");
-            var url = new MongoUrl(connectionstring);
-            var client = new MongoClient(url);
-            var server = client.GetServer();
-            var database = server.GetDatabase(url.DatabaseName);
-            var collection = database.GetCollection<BuildResultEntity>("BuildResults");
+            var collection = GetBuildResults();
 
             var buildResultEntity = new BuildResultEntity
                                     {

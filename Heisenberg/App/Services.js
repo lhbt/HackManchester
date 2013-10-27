@@ -41,3 +41,10 @@ heisenbergServices.factory('MinutesSinceCommit', ['$resource',
             query: { method: 'GET', params: {}, isArray: false }
         });
     }]);
+
+heisenbergServices.factory('MostRecentBuildResults', ['$resource',
+    function ($resource) {
+        return $resource('api/notifications/mostrecentbuildresults', {}, {
+            query: { method: 'GET', params: {}, isArray: false }
+        });
+    }]);

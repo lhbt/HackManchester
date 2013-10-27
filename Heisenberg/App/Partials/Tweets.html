@@ -42,8 +42,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="tweet in tweets">
-                    <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
-                    <td>{{tweet.Author}}</td>
+                    <td class="tweet-timestamp">{{tweet.Timestamp | date:'HH:mm Z'}}</td>
+                    <td><a href="http://www.twitter.com/{{tweet.Author}}">@{{tweet.Author}}</a></td>
                     <td ng-bind-html="tweet.Text | tweet"></td>
                 </tr>
             </tbody>
