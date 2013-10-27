@@ -32,9 +32,29 @@
 </ul>
 <div class="row">
     <div class="span8">
-        Source Control Stuff
-        <div ng-model="minutessincecommit"></div>
-        {{minutessincecommit}}
+        <div ng-model="minutessincecommit">{{value}} minutes since commit</div>
+        <div class="row">
+            <div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Author</th>
+                            <th>Comment</th>
+                            <th>Files modified</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="commit in commits">
+                            <td>{{commit.TimeComitted | date:'HH:mm Z'}}</td>
+                            <td>{{commit.Author}}</td>
+                            <td>{{commit.Comment}}</td>
+                            <td>{{commit.FilesModified}}></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
