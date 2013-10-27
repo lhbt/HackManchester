@@ -26,7 +26,7 @@ namespace Heisenberg.MongoDataStore
             // fetch all objects
             var thingies = collection.FindAll();
 
-            return thingies.Select(x => x.Name);
+            return thingies.Select(x => x.Id.ToString());
         }
 
         public class Thingy
