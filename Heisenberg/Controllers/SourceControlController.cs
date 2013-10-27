@@ -17,7 +17,7 @@ namespace Heisenberg.Controllers
         [HttpGet]
         public IEnumerable<RepositoryCommit> Commits()
         {
-            return _parser.GetCommitsMadeDuringTheLastHour();
+            return _parser.GetCommits();
         }
 
         [HttpGet]
