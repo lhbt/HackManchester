@@ -13,12 +13,9 @@ namespace Heisenberg.Ioc.Unity
         public static void RegisterTypesTo(IUnityContainer container)
         {
             container.RegisterType<ISocialMediaWrapper, TwitterApiWrapper>();
-<<<<<<< HEAD
             container.RegisterType<ISourceControlParser, GitHubApiParser>
                 (new InjectionConstructor("lhbt", "hackmanchester"));
-=======
-            container.RegisterType<ISourceControlParser, GitHubParser>
-                (new InjectionConstructor(@"C:\Users\laurent\Documents\GitHub\HackManchester"));
+
             container.RegisterType<IBuildStatusReadModel, FakeBuildStatusReadModel>();
 
             var bus = new FakeBus();
@@ -27,7 +24,6 @@ namespace Heisenberg.Ioc.Unity
             bus.RegisterHandler<BuildFailed>(fakeReadModel.Handle);
             
             container.RegisterInstance(((IEventPublisher) bus));
->>>>>>> 1a39b3eff1f7ff1c2354af4ac24f23a6a4e37c07
         }
     }
 }
