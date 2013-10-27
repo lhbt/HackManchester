@@ -16,7 +16,7 @@ heisenbergServices.factory('Tweets', ['$resource',
 
 heisenbergServices.factory('Commits', ['$resource',
     function($resource) {
-        return $resource('api/sourcecontrol/commits', {}, {
+        return $resource('api/sourcecontrol/actualcommits', {}, {
            query: { method: 'GET', params: {}, isArray: true } 
         });
     }]);
@@ -43,6 +43,13 @@ heisenbergServices.factory('MinutesSinceCommit', ['$resource',
     }]);
 
 heisenbergServices.factory('MostRecentBuildResults', ['$resource',
+    function ($resource) {
+        return $resource('api/notifications/mostrecentbuildresults', {}, {
+            query: { method: 'GET', params: {}, isArray: true }
+        });
+    }]);
+
+heisenbergServices.factory('Build', ['$resource',
     function ($resource) {
         return $resource('api/notifications/mostrecentbuildresults', {}, {
             query: { method: 'GET', params: {}, isArray: true }
