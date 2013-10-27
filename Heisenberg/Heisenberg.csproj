@@ -142,6 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\SourceControlController.cs" />
     <Compile Include="Controllers\TeamMembersController.cs" />
     <Compile Include="Controllers\TweetMessageController.cs" />
@@ -153,6 +154,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Dashboard\Countdown.js" />
     <Content Include="App\Dashboard\Dashboard.js" />
     <Content Include="App\Dashboard\Tweets.js" />
     <Content Include="App\HeisenbergApp.js" />
