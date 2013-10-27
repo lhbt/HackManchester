@@ -11,8 +11,7 @@ namespace Heisenberg.GitHub
         {
             _client = new RestClient()
             {
-                BaseUrl = string.Format("https://api.github.com/repos/{0}/{1}", userName, repoName),
-                Authenticator = new HttpBasicAuthenticator("lhbt", "loulouTTE54")
+                BaseUrl = string.Format("https://api.github.com/repos/{0}/{1}", userName, repoName)
             };
         }
 
