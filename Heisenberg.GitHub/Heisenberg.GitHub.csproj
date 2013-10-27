@@ -64,7 +64,6 @@
   <ItemGroup>
     <Compile Include="GitHelper.cs" />
     <Compile Include="GitHubApiParser.cs" />
-    <Compile Include="GitHubParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleJson.cs" />
   </ItemGroup>

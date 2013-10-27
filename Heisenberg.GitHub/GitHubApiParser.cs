@@ -12,6 +12,9 @@ namespace Heisenberg.GitHub
     public class GitHubApiParser : ISourceControlParser
     {
         private readonly Dictionary<string, string> _knownLanguages;
+        private readonly Dictionary<int, string> _gitPunchCardMapping;
+        private const string FirstCommitSha = "d13f469d93ddba9950fea408380724c0872cc6ea";
+        private int _totalAmountOfCommits;
         private List<RepositoryCommit> _commits;
         private DateTime _lastGetCommitTime;
 
@@ -26,22 +29,59 @@ namespace Heisenberg.GitHub
                 { "cshtml", "razor" },
                 { "xaml", "WPF" }
             };
+
+            _gitPunchCardMapping = new Dictionary<int, string>
+            {
+                { 0, "Sunday" },
+                { 1, "Monday" },
+                { 2, "Tuesday" },
+                { 3, "Wednesday" },
+                { 4, "Thursday" },
+                { 5, "Friday" },
+                { 6, "Saturday" }
+            };
         }
 
-        public List<RepositoryCommit> GetCommits(int hours)
+        private void GetTotalAmountOfCommits()
         {
-            DateTime since;
+            var lastCommit = GitHelper.ExecuteRequest("commits?per_page=1");
+            var rep = GitHelper.ExecuteRequest("compare/" + FirstCommitSha + "..." + lastCommit[0].sha);
+
+            _totalAmountOfCommits = int.Parse(rep.total_commits.ToString()) + 1;
+        }
+
+        public List<RepositoryCommit> GetCommits()
+        {
+            GetTotalAmountOfCommits();
 
             if (_commits == null)
             {
                 _commits = new List<RepositoryCommit>();
-                since = DateTime.Now.AddHours(-hours);
+                var rep =
+                    GitHelper.ExecuteRequest("/commits?per_page=100&since=" + DateTime.Now.AddHours(-24).ToIso8601());
+                FillCommitsList(rep);
+                while (_commits.Count < _totalAmountOfCommits)
+                {
+                    var resp =
+                        GitHelper.ExecuteRequest("/commits?per_page=100&until=" +
+                                                 _commits.Last().TimeCommited.ToIso8601());
+                    FillCommitsList(resp);
+                }
             }
-            else since = _lastGetCommitTime;
+            else
+            {
+                var response = GitHelper.ExecuteRequest("/commits?per_page=100&since=" + _lastGetCommitTime.ToIso8601());
+                FillCommitsList(response);
+            }
 
-            var rep = GitHelper.ExecuteRequest("/commits?per_page=100&since=" + since.ToIso8601());
+            _lastGetCommitTime = DateTime.Now;
 
-            foreach (var commit in rep)
+            return _commits;
+        }
+
+        private void FillCommitsList(dynamic resp)
+        {
+            foreach (var commit in resp)
             {
                 if (_commits.Any(o => o.Sha == commit.sha)) continue;
 
@@ -60,10 +100,6 @@ namespace Heisenberg.GitHub
 
                 _commits.Add(newCommit);
             }
-
-            _lastGetCommitTime = DateTime.Now;
-
-            return _commits;
         }
 
         public List<string> GetLanguagesUsed()
@@ -89,12 +125,12 @@ namespace Heisenberg.GitHub
 
         public int GetNumberOfCommitsWithKeywordInComment(string keyword)
         {
-            return GetCommits(1).Count(o => o.Comment.Contains("keyword"));
+            return GetCommits().Count(o => o.Comment.Contains("keyword"));
         }
 
         public List<RepositoryCommit> GetCommitsMadeDuringTheLastHour()
         {
-            return GetCommits(1);
+            return GetCommits().Where(o => (DateTime.Now - o.TimeCommited).Minutes <= 60).ToList();
         }
 
         public int GetAmountOfBytesOfCode()
@@ -117,6 +153,25 @@ namespace Heisenberg.GitHub
             var dateLastCommit = DateTime.Parse((string)lastCommit[0].commit.author.date);
 
             return (DateTime.Now - dateLastCommit).Minutes;
+        }
+
+        public Dictionary<string, int> GetAmountOfCommitsPerHour()
+        {
+            var dic = new Dictionary<string, int>();
+            var rep = GitHelper.ExecuteRequest("stats/punch_card");
+            foreach (var entry in rep)
+            {
+                if (entry[2] != 0)
+                {
+                    dic.Add(GetTimePunchCard(int.Parse(entry[0].ToString()), int.Parse(entry[1].ToString())), int.Parse(entry[2].ToString()));
+                }
+            }
+            return dic;
+        }
+
+        private string GetTimePunchCard(int day, int hour)
+        {
+            return _gitPunchCardMapping[day] + " - hour " + hour;
         }
 
         public bool IsKnownLanguage(string file)

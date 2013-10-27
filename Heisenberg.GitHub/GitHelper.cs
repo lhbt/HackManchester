@@ -33,7 +33,7 @@ namespace Heisenberg.GitHub
 
         public static string ToIso8601(this DateTime date)
         {
-            return date.ToString("yyyy-MM-ddThh:mmZ");
+            return date.ToString("yyyy-MM-ddTHH:mmZ");
         }
     }
 }

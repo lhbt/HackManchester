@@ -14,15 +14,13 @@ namespace Heisenberg.Tests
         //public void Setup()
         //{
         //    _parser = new GitHubApiParser("lhbt", "hackmanchester");
-        //    _parser.GetCommits(24);
         //}
 
         //[Test]
         //public void CanGetListOfCommits()
         //{
-        //    var commits = _parser.GetCommits(1);
+        //    var commits = _parser.GetCommits();
         //    Assert.That(commits, Is.Not.Null);
-        //    Assert.That((DateTime.Now - commits.First().TimeCommited).Minutes < 60);
         //}
 
         //[Test]

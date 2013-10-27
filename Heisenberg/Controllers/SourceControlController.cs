@@ -14,13 +14,12 @@ namespace Heisenberg.Controllers
         public SourceControlController(ISourceControlParser parser)
         {
             _parser = parser;
-            _parser.GetCommits(24);
         }
 
         [HttpGet]
-        public string Commits()
+        public IEnumerable<RepositoryCommit> Commits()
         {
-            return _parser.GetCommitsMadeDuringTheLastHour().ToString();
+            return _parser.GetCommitsMadeDuringTheLastHour();
         }
 
         [HttpGet]
@@ -57,6 +56,12 @@ namespace Heisenberg.Controllers
         public IEnumerable<RepositoryCommit> ActualCommits()
         {
             return _parser.GetCommitsMadeDuringTheLastHour();
+        }
+
+        [HttpGet]
+        public Dictionary<string, int> PunchCard()
+        {
+            return _parser.GetAmountOfCommitsPerHour();
         }
     }
 }
