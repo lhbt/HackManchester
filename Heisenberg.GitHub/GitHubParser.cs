@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using GitSharp;
+using GitSharp.Core;
 using GitSharp.Core.RevPlot;
 using GitSharp.Core.Util;
 using Heisenberg.Domain;
 using Heisenberg.Domain.Interfaces;
+using Repository = GitSharp.Repository;
+using UserInfoProvider = GitSharp.Core.UserInfoProvider;
 
 namespace Heisenberg.GitHub
 {

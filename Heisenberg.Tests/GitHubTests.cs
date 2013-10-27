@@ -9,18 +9,18 @@ namespace Heisenberg.Tests
     {
         private GitHubParser _parser;
 
-        //[SetUp]
-        //public void Setup()
-        //{
-        //    var repoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName; 
-        //    _parser = new GitHubParser(repoPath);    
-        //}
+        [SetUp]
+        public void Setup()
+        {
+            var repoPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            _parser = new GitHubParser(repoPath);
+        }
 
-        //[Test]
-        //public void CanOpenAGivenRepository()
-        //{
-        //    Assert.That(_parser.Repository, Is.Not.Null);
-        //}
+        [Test]
+        public void CanOpenAGivenRepository()
+        {
+            Assert.That(_parser.Repository, Is.Not.Null);
+        }
 
         //[Test]
         //public void CanGetListOfCommits()
