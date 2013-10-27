@@ -14,28 +14,28 @@ heisenbergServices.factory('Tweets', ['$resource',
       });
   }]);
 
-heisenbergServices.factory('Commits', ['$commits',
+heisenbergServices.factory('Commits', ['$resource',
     function($resource) {
         return $resource('api/sourcecontrol/commits', {}, {
            query: { method: 'GET', params: {}, isArray: true } 
         });
     }]);
 
-heisenbergServices.factory('CommitLanguages', ['$languages',
+heisenbergServices.factory('CommitLanguages', ['$resource',
     function ($resource) {
         return $resource('api/sourcecontrol/languagesused', {}, {
             query: { method: 'GET', params: {}, isArray: true }
         });
     }]);
 
-heisenbergServices.factory('BytesOfCode', ['$bytesofcode',
+heisenbergServices.factory('BytesOfCode', ['$resource',
     function ($resource) {
         return $resource('api/sourcecontrol/bytesofcode', {}, {
             query: { method: 'GET', params: {}, isArray: false }
         });
     }]);
 
-heisenbergServices.factory('MinutesSinceCommit', ['$minutesincelastcommit',
+heisenbergServices.factory('MinutesSinceCommit', ['$resource',
     function ($resource) {
         return $resource('api/sourcecontrol/minutessincelastcommit', {}, {
             query: { method: 'GET', params: {}, isArray: false }
