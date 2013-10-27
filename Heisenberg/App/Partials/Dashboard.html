@@ -6,7 +6,14 @@
                 <h2>Dashboard</h2>
             </div>
             <div>
-                <div id="countdown"></div>
+                <div class="countdown">
+                    <script type="text/javascript">
+                        var clock = $('.countdown').FlipClip(new Date(2013,10,28).getTime()/1000 - new Date().getTime()/1000, {
+                            clockFace: 'DailyCounter',
+                            countdown: true
+                        });
+                    </script>
+                </div>
             </div>
             <div>
                 <ul ng-repeat="tweet in tweets">
