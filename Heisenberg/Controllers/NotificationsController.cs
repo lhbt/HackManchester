@@ -1,22 +1,53 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Web.Http;
+using Heisenberg.Domain;
+using Heisenberg.Domain.Interfaces;
+using Heisenberg.Domain.Messages;
+using Heisenberg.Domain.Messaging;
 
 namespace Heisenberg.Controllers
 {
     public class NotificationsController : ApiController
     {
-        private static readonly ConcurrentBag<string> _statuses = new ConcurrentBag<string>(); 
-        
+        private readonly IEventPublisher _eventPublisher;
+        private readonly IBuildStatusReadModel _buildStatusReadModel;
+
+        public NotificationsController(IEventPublisher eventPublisher, IBuildStatusReadModel buildStatusReadModel)
+        {
+            _eventPublisher = eventPublisher;
+            _buildStatusReadModel = buildStatusReadModel;
+        }
+
         public void BuildNotification(Notification notification)
         {
-            _statuses.Add(notification.Build.Status);
+            Commit commit = notification.Build.Branch.Commit;
+            var domainCommit = new Domain.Commit
+                                         {
+                                             Id = commit.Id,
+                                             Message = commit.Message,
+                                             Timestamp = DateTime.UtcNow
+                                         };
+
+            if (notification.Build.Status == "succeeded")
+            {
+                _eventPublisher.Publish(new BuildSucceeded { Commit = domainCommit });
+            }
+            else
+            {
+                _eventPublisher.Publish(new BuildFailed { Commit = domainCommit });
+            }
         }
 
         public IEnumerable<string> BuildStatuses()
         {
-            return _statuses.ToArray();
+            return new List<string>{"succeeded", "failed"};
+        }
+
+        public IEnumerable<BuildResult> MostRecentBuildResults()
+        {
+            return _buildStatusReadModel.GetMostRecentBuildResults(15);
         }
     }
 
@@ -28,8 +59,6 @@ namespace Heisenberg.Controllers
 
         [DataMember(Name = "build")]
         public Build Build { get; set; }
-
-        
 
         [DataMember(Name = "url")]
         public string Url { get; set; }
@@ -53,14 +82,31 @@ namespace Heisenberg.Controllers
     {
         [DataMember(Name = "status")]
         public string Status { get; set; }
-        //  "build": {
-        //    "id": "bar",
-        //    "branch" : {
-        //         "name" : "baz",
-        //         "commit" : {
-        //             "id" : "77d991fe61187d205f329ddf9387d118a09fadcd",
-        //             "message" : "Implement foobar"
-        //         }
-        //    },
+
+        [DataMember(Name="id")]
+        public string Id { get; set; }
+
+        [DataMember(Name="branch")]
+        public Branch Branch { get; set; }
+    }
+
+    [DataContract]
+    public class Branch
+    {
+        [DataMember(Name="name")]
+        public string Name { get; set; }
+        
+        [DataMember(Name = "commit")]
+        public Commit Commit { get; set; }
+    }
+
+    [DataContract]
+    public class Commit
+    {
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
+
+        [DataMember(Name = "message")]
+        public string Message { get; set; }
     }
 }
