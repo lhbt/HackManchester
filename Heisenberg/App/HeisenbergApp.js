@@ -7,6 +7,7 @@ heisenbergControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
 
 var heisenbergApp = angular.module('heisenbergApp', [
   'ngRoute',
+  'twitterFilters',
   'heisenbergControllers'
 ]);
 
