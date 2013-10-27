@@ -142,7 +142,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NotificationsController.cs" />
+    <Compile Include="Controllers\SourceControlController.cs" />
     <Compile Include="Controllers\TeamMembersController.cs" />
     <Compile Include="Controllers\TweetMessageController.cs" />
     <Compile Include="Controllers\TwitterHashtagController.cs" />
@@ -150,7 +150,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BuildNoticationDtos\Notification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -647,6 +646,7 @@
     <Folder Include="Assets\Css\" />
     <Folder Include="Assets\Images\" />
     <Folder Include="Assets\Scripts\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
