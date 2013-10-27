@@ -3,9 +3,9 @@
     $scope.orderProp = 'name';
 
     $scope.commits = commits.query();
-    $scope.commitlanguages = CommitLanguages.query;
-    $scope.bytesofcode = bytesofCode.query;
-    $scope.minutessincecommit = minutesSinceCommit.query;
+    $scope.commitlanguages = CommitLanguages.query();
+    $scope.bytesofcode = bytesofCode.query();
+    $scope.minutessincecommit = minutesSinceCommit.query();
 
     //$scope.onTimeout = function() {
         //$scope.teamMembers = TeamMember.query();
