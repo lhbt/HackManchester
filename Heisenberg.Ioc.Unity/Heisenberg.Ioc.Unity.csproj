@@ -58,6 +58,10 @@
       <Project>{CF24F456-0B4A-4390-A513-CE060566F8DF}</Project>
       <Name>Heisenberg.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Heisenberg.FakeDataStore\Heisenberg.FakeDataStore.csproj">
+      <Project>{26F92935-54C9-485F-A274-D85208721591}</Project>
+      <Name>Heisenberg.FakeDataStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Heisenberg.GitHub\Heisenberg.GitHub.csproj">
       <Project>{511993BC-3B07-48CB-AD31-66DFE8E0E8CC}</Project>
       <Name>Heisenberg.GitHub</Name>

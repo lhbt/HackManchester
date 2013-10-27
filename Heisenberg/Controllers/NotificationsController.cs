@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Web.Http;
+using Heisenberg.Domain;
+using Heisenberg.Domain.Interfaces;
 using Heisenberg.Domain.Messages;
 using Heisenberg.Domain.Messaging;
 
@@ -10,12 +12,14 @@ namespace Heisenberg.Controllers
     public class NotificationsController : ApiController
     {
         private readonly IEventPublisher _eventPublisher;
+        private readonly IBuildStatusReadModel _buildStatusReadModel;
 
-        public NotificationsController(IEventPublisher eventPublisher)
+        public NotificationsController(IEventPublisher eventPublisher, IBuildStatusReadModel buildStatusReadModel)
         {
             _eventPublisher = eventPublisher;
+            _buildStatusReadModel = buildStatusReadModel;
         }
-        
+
         public void BuildNotification(Notification notification)
         {
             Commit commit = notification.Build.Branch.Commit;
@@ -38,7 +42,12 @@ namespace Heisenberg.Controllers
 
         public IEnumerable<string> BuildStatuses()
         {
-            return new List<string>();
+            return new List<string>{"succeeded", "failed"};
+        }
+
+        public IEnumerable<BuildResult> MostRecentBuildResults()
+        {
+            return _buildStatusReadModel.GetMostRecentBuildResults(15);
         }
     }
 

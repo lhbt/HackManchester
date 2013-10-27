@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.Domain", "Heisen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.Ioc.Unity", "Heisenberg.Ioc.Unity\Heisenberg.Ioc.Unity.csproj", "{9DF4D7DA-48D7-471B-A554-8B89B215F248}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heisenberg.FakeDataStore", "Heisenberg.FakeDataStore\Heisenberg.FakeDataStore.csproj", "{26F92935-54C9-485F-A274-D85208721591}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{9DF4D7DA-48D7-471B-A554-8B89B215F248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DF4D7DA-48D7-471B-A554-8B89B215F248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DF4D7DA-48D7-471B-A554-8B89B215F248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26F92935-54C9-485F-A274-D85208721591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F92935-54C9-485F-A274-D85208721591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F92935-54C9-485F-A274-D85208721591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F92935-54C9-485F-A274-D85208721591}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
