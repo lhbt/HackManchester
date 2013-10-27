@@ -160,6 +160,7 @@
     <Content Include="App\Partials\Dashboard.html" />
     <Content Include="App\Partials\Tweets.html" />
     <Content Include="App\Services.js" />
+    <Content Include="App\TwitterFilters.js" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
