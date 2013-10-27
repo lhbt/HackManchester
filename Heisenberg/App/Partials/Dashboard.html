@@ -75,8 +75,8 @@
             <tbody>
                 <tr ng-repeat="mostrecentbuildresult in mostrecentbuildresults">
                     <td>{{mostrecentbuildresult.Succeeded}}</td>
-                    <td>{{mostrecentbuildresult.Message}}</td>
-                    <td>{{mostrecentbuildresult.Timestamp}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Message}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Timestamp}}</td>
                 </tr>
             </tbody>
         </table>
