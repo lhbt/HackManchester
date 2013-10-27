@@ -16,9 +16,9 @@ namespace Heisenberg.GitHub
     {
         private readonly Dictionary<string, string> _knownLanguages;
 
-        public GitHubParser(string repoPath)
+        public GitHubParser(string userName, string repoName)
         {
-            Repository = new Repository(repoPath);
+            GitHelper.ConfigureClient(userName, repoName);
 
             _knownLanguages = new Dictionary<string, string>
             {
@@ -44,7 +44,17 @@ namespace Heisenberg.GitHub
             return GetCommits().Count(commit => commit.Comment.Contains(keyword));
         }
 
-        public int GetAmountOfLinesOfCode()
+        public List<RepositoryCommit> GetCommitsMadeDuringTheLastHour()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RepositoryCommit> GetCommits(int hours)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetAmountOfBytesOfCode()
         {
             return GetFilesList().Where(IsKnownLanguage).Sum(file => File.ReadAllLines(Repository.Directory.Replace(".git", "") + "\\" + file).Length);
         }

@@ -10,8 +10,8 @@ namespace Heisenberg.Ioc.Unity
         public static void RegisterTypesTo(IUnityContainer container)
         {
             container.RegisterType<ISocialMediaWrapper, TwitterApiWrapper>();
-            container.RegisterType<ISourceControlParser, GitHubParser>
-                (new InjectionConstructor(@"C:\Users\laurent\Documents\GitHub\HackManchester"));
+            container.RegisterType<ISourceControlParser, GitHubApiParser>
+                (new InjectionConstructor("lhbt", "hackmanchester"));
         }
     }
 }

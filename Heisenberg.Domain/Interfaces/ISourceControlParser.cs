@@ -4,12 +4,12 @@ namespace Heisenberg.Domain.Interfaces
 {
     public interface ISourceControlParser
     {
-        List<RepositoryCommit> GetCommits();
         List<string> GetLanguagesUsed();
         List<string> GetFilesList();
         int GetNumberOfCommitsWithKeywordInComment(string keyword);
-        int GetNumberOfCommitsInTheLastHour();
-        int GetAmountOfLinesOfCode();
+        List<RepositoryCommit> GetCommitsMadeDuringTheLastHour();
+        List<RepositoryCommit> GetCommits(int hours);
+        int GetAmountOfBytesOfCode();
         int GetAmountOfMinutesSinceLastCommit();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Http;
 using Heisenberg.Domain;
 using Heisenberg.Domain.Interfaces;
+using Newtonsoft.Json;
 
 namespace Heisenberg.Controllers
 {
@@ -13,18 +14,19 @@ namespace Heisenberg.Controllers
         public SourceControlController(ISourceControlParser parser)
         {
             _parser = parser;
+            _parser.GetCommits(24);
         }
 
         [HttpGet]
         public string Commits()
         {
-            return _parser.GetNumberOfCommitsInTheLastHour().ToString();
+            return _parser.GetCommitsMadeDuringTheLastHour().ToString();
         }
 
         [HttpGet]
-        public int LinesOfCode()
+        public int BytesOfCode()
         {
-            return _parser.GetAmountOfLinesOfCode();
+            return _parser.GetAmountOfBytesOfCode();
         }
 
         [HttpGet]
@@ -54,7 +56,7 @@ namespace Heisenberg.Controllers
         [HttpGet]
         public IEnumerable<RepositoryCommit> ActualCommits()
         {
-            return _parser.GetCommits();
+            return _parser.GetCommitsMadeDuringTheLastHour();
         }
     }
 }

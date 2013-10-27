@@ -9,5 +9,6 @@ namespace Heisenberg.Domain
         public DateTime TimeCommited { get; set; }
         public string Comment { get; set; }
         public List<string> FilesModified { get; set; }
+        public string Sha { get; set; }
     }
 }
