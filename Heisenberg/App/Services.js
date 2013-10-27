@@ -16,7 +16,7 @@ heisenbergServices.factory('Tweets', ['$resource',
 
 heisenbergServices.factory('Commits', ['$resource',
     function($resource) {
-        return $resource('api/sourcecontrol/commits', {}, {
+        return $resource('api/sourcecontrol/actualcommits', {}, {
            query: { method: 'GET', params: {}, isArray: true } 
         });
     }]);

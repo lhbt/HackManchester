@@ -13,6 +13,7 @@ namespace Heisenberg.GitHub
     {
         private readonly Dictionary<string, string> _knownLanguages;
         private readonly Dictionary<int, string> _gitPunchCardMapping;
+        //ugly hardcoded var, to replace with the intercept sha of the initial commit when live
         private const string FirstCommitSha = "d13f469d93ddba9950fea408380724c0872cc6ea";
         private int _totalAmountOfCommits;
         private List<RepositoryCommit> _commits;
@@ -132,7 +133,7 @@ namespace Heisenberg.GitHub
 
         public List<RepositoryCommit> GetCommitsMadeDuringTheLastHour()
         {
-            return _commits.Where(o => (DateTime.Now - o.TimeCommited).TotalMinutes <= 60).ToList();
+            return GetCommits().Where(o => (DateTime.Now - o.TimeCommited).TotalMinutes <= 60).ToList();
         }
 
         public int GetAmountOfBytesOfCode()
