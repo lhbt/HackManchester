@@ -42,7 +42,7 @@ heisenbergServices.factory('MinutesSinceCommit', ['$resource',
         });
     }]);
 
-heisenbergServices.factory('MostRecentBuildResults', ['mostrecentbuildresults',
+heisenbergServices.factory('MostRecentBuildResults', ['$resource',
     function ($resource) {
         return $resource('api/notifications/mostrecentbuildresults', {}, {
             query: { method: 'GET', params: {}, isArray: false }

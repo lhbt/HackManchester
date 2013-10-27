@@ -1,4 +1,4 @@
-﻿heisenbergControllers.controller('DashboardCtrl', ['$scope', 'TeamMember', 'Tweets', 'Commits', 'CommitLanguages', 'BytesOfCode', 'MinutesSinceCommit', function DashboardCtrl($scope, TeamMember, Tweets, commits, CommitLanguages, bytesofCode, minutesSinceCommit) {
+﻿heisenbergControllers.controller('DashboardCtrl', ['$scope', 'TeamMember', 'Tweets', 'Commits', 'CommitLanguages', 'BytesOfCode', 'MinutesSinceCommit', 'MostRecentBuildResults', function DashboardCtrl($scope, TeamMember, Tweets, commits, CommitLanguages, bytesofCode, minutesSinceCommit, mostRecentBuildResults) {
     $scope.teamMembers = TeamMember.query();
     $scope.orderProp = 'name';
 
@@ -6,7 +6,7 @@
     $scope.commitlanguages = CommitLanguages.query;
     $scope.bytesofcode = bytesofCode.query;
     $scope.minutessincecommit = minutesSinceCommit.query;
-
+    $scope.mostrecentbuildresults = mostRecentBuildResults.query;
     //$scope.onTimeout = function() {
         //$scope.teamMembers = TeamMember.query();
         //$scope.tweets = Tweets.query();
