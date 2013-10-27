@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Heisenberg.Domain.Interfaces
 {
@@ -8,8 +9,9 @@ namespace Heisenberg.Domain.Interfaces
         List<string> GetFilesList();
         int GetNumberOfCommitsWithKeywordInComment(string keyword);
         List<RepositoryCommit> GetCommitsMadeDuringTheLastHour();
-        List<RepositoryCommit> GetCommits(int hours);
+        List<RepositoryCommit> GetCommits();
         int GetAmountOfBytesOfCode();
         int GetAmountOfMinutesSinceLastCommit();
+        Dictionary<string, int> GetAmountOfCommitsPerHour();
     }
 }

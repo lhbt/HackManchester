@@ -11,7 +11,8 @@ namespace Heisenberg.GitHub
         {
             _client = new RestClient()
             {
-                BaseUrl = string.Format("https://api.github.com/repos/{0}/{1}", userName, repoName)
+                BaseUrl = string.Format("https://api.github.com/repos/{0}/{1}", userName, repoName),
+                Authenticator = new HttpBasicAuthenticator("lhbt", "loulouTTE54")
             };
         }
 
@@ -33,7 +34,7 @@ namespace Heisenberg.GitHub
 
         public static string ToIso8601(this DateTime date)
         {
-            return date.ToString("yyyy-MM-ddThh:mmZ");
+            return date.ToString("yyyy-MM-ddTHH:mmZ");
         }
     }
 }
