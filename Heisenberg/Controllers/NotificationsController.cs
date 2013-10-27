@@ -45,6 +45,7 @@ namespace Heisenberg.Controllers
             return new List<string>{"succeeded", "failed"};
         }
 
+        [HttpGet]
         public IEnumerable<BuildResult> MostRecentBuildResults()
         {
             return _buildStatusReadModel.GetMostRecentBuildResults(15);
