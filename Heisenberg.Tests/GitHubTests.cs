@@ -63,5 +63,13 @@ namespace Heisenberg.Tests
         {
             Assert.That(_parser.GetCommitsMadeDuringTheLastHour().Any(o => (DateTime.Now - o.TimeCommited).TotalMinutes >= 60), Is.False);
         }
+
+        [Test]
+        public void CanGetContributingMembers()
+        {
+            var members = _parser.GetContributingMembers();
+
+            Assert.That(members, Is.Not.Empty);
+        }
     }
 }

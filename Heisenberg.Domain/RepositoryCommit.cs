@@ -10,5 +10,7 @@ namespace Heisenberg.Domain
         public string Comment { get; set; }
         public List<string> FilesModified { get; set; }
         public string Sha { get; set; }
+        public string EmailAddress { get; set; }
+        public string AvatarUrl { get; set; }
     }
 }

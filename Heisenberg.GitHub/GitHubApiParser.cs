@@ -89,6 +89,8 @@ namespace Heisenberg.GitHub
                 {
                     Sha = commit.sha,
                     Author = commit.commit.author.name,
+                    AvatarUrl = commit.author.avatar_url,
+                    EmailAddress = commit.author.email,
                     Comment = commit.commit.message,
                     FilesModified = new List<string>(),
                     TimeCommited = DateTime.Parse(commit.commit.author.date)
@@ -177,6 +179,17 @@ namespace Heisenberg.GitHub
         public bool IsKnownLanguage(string file)
         {
             return _knownLanguages.Keys.Contains(file.Split('.').Last());
+        }
+
+        public IEnumerable<TeamMember> GetContributingMembers()
+        {
+            if (_commits == null)
+            {
+                GetCommits();
+            }
+
+            var authors = _commits.GroupBy(x => x.Author);
+            return authors.Select(x => new TeamMember() { Name = x.Key, Username = x.First().EmailAddress, AvatarUrl = x.First().AvatarUrl});
         }
     }
 }

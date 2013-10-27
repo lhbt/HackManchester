@@ -15,8 +15,8 @@
                     </script>
                 </div>
             </div>
-            <div style="display: none">
-                <ul>
+            <div>
+                <ul class="inline">
                     <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">{{member.username}}
                         <p>{{member.name}}</p>
                     </li>
@@ -26,18 +26,19 @@
     </section>
 </div>
 <ul class="nav nav-pills">
-  <li class="active"><a href="#">Dashboard</a></li>
-  <li><a href="#/twitter">Tweets</a></li>
-  <li><a href="#/team">Team</a></li>
+    <li class="active"><a href="#">Dashboard</a></li>
+    <li><a href="#/twitter">Tweets</a></li>
+    <li><a href="#/team">Team</a></li>
 </ul>
+<table class="table">
+    
+
+</table>
 <div class="row">
     <div class="span8">
         Source Control Stuff
-            <div ng-model="minutessincecommit"></div>
-        {{minutessincecommit}}
+        
     </div>
 </div>
-
-    </div>
 
 
