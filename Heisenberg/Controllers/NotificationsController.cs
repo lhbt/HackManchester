@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Web.Http;
 using Heisenberg.Domain.Messages;
@@ -17,13 +18,21 @@ namespace Heisenberg.Controllers
         
         public void BuildNotification(Notification notification)
         {
+            Commit commit = notification.Build.Branch.Commit;
+            var domainCommit = new Domain.Commit
+                                         {
+                                             Id = commit.Id,
+                                             Message = commit.Message,
+                                             Timestamp = DateTime.UtcNow
+                                         };
+
             if (notification.Build.Status == "succeeded")
             {
-                _eventPublisher.Publish(new BuildSucceeded());
+                _eventPublisher.Publish(new BuildSucceeded { Commit = domainCommit });
             }
             else
             {
-                _eventPublisher.Publish(new BuildFailed());
+                _eventPublisher.Publish(new BuildFailed { Commit = domainCommit });
             }
         }
 
@@ -64,14 +73,31 @@ namespace Heisenberg.Controllers
     {
         [DataMember(Name = "status")]
         public string Status { get; set; }
-        //  "build": {
-        //    "id": "bar",
-        //    "branch" : {
-        //         "name" : "baz",
-        //         "commit" : {
-        //             "id" : "77d991fe61187d205f329ddf9387d118a09fadcd",
-        //             "message" : "Implement foobar"
-        //         }
-        //    },
+
+        [DataMember(Name="id")]
+        public string Id { get; set; }
+
+        [DataMember(Name="branch")]
+        public Branch Branch { get; set; }
+    }
+
+    [DataContract]
+    public class Branch
+    {
+        [DataMember(Name="name")]
+        public string Name { get; set; }
+        
+        [DataMember(Name = "commit")]
+        public Commit Commit { get; set; }
+    }
+
+    [DataContract]
+    public class Commit
+    {
+        [DataMember(Name = "id")]
+        public string Id { get; set; }
+
+        [DataMember(Name = "message")]
+        public string Message { get; set; }
     }
 }

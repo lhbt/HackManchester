@@ -2,7 +2,7 @@
 
 namespace Heisenberg.Domain.Messages
 {
-    public class BuildSucceeded : Event
+    public class BuildFailed : Event
     {
         public Commit Commit { get; set; }
     }

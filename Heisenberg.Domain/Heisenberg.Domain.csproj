@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commit.cs" />
     <Compile Include="Interfaces\ISourceControlParser.cs" />
     <Compile Include="Messages\BuildSucceeded.cs" />
     <Compile Include="Messaging\Event.cs" />
