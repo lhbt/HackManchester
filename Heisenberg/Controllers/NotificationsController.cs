@@ -11,7 +11,7 @@ namespace Heisenberg.Controllers
         
         public void BuildNotification(Notification notification)
         {
-            _statuses.Add(notification.Status);
+            _statuses.Add(notification.Build.Status);
         }
 
         public IEnumerable<string> BuildStatuses()
@@ -29,8 +29,7 @@ namespace Heisenberg.Controllers
         [DataMember(Name = "build")]
         public Build Build { get; set; }
 
-        [DataMember(Name = "status")]
-        public string Status { get; set; }
+        
 
         [DataMember(Name = "url")]
         public string Url { get; set; }
@@ -52,6 +51,8 @@ namespace Heisenberg.Controllers
     [DataContract]
     public class Build
     {
+        [DataMember(Name = "status")]
+        public string Status { get; set; }
         //  "build": {
         //    "id": "bar",
         //    "branch" : {
