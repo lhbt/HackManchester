@@ -1,0 +1,42 @@
+﻿<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <div class="hero-unit">
+                <h1>Heisenberg</h1>
+                <h2>Dashboard</h2>
+            </div>
+        </div>
+    </section>
+</div>
+<ul class="nav nav-pills">
+    <li><a href="#">Dashboard</a></li>
+    <li><a href="#/twitter">Tweets</a></li>
+    <li class="active"><a href="#/build">Build</a></li>
+    <li><a href="#/team">Team</a></li>
+</ul>
+<table class="table">
+    
+
+</table>
+<div class="row">
+    <div>Recent deployments</div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Success</th>
+                    <th>Message</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mostrecentbuildresult in mostrecentbuildresults">
+                    <td>{{mostrecentbuildresult.Succeeded}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Message}}</td>
+                    <td>{{mostrecentbuildresult.Commit.Timestamp}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
