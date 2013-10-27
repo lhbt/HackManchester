@@ -26,7 +26,7 @@ namespace Heisenberg.MongoDataStore
         {
             var collection = GetBuildResults();
 
-            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Descending("Timestamp")).SetLimit(count);
+            MongoCursor<BuildResultEntity> entities = collection.FindAll().SetSortOrder(SortBy.Ascending("Timestamp")).SetLimit(count);
 
             IList<BuildResult> buildResults = new List<BuildResult>(count);
 
