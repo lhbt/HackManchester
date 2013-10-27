@@ -19,7 +19,10 @@ namespace Heisenberg.MongoDataStore
             var client = new MongoClient(url);
             var server = client.GetServer();
             MongoDatabase database = server.GetDatabase(url.DatabaseName);
-            return database.GetCollection<BuildResultEntity>("BuildResults");
+            var buildResults =  database.GetCollection<BuildResultEntity>("BuildResults");
+            buildResults.EnsureIndex(new IndexKeysBuilder().Descending("Timestamp"));
+
+            return buildResults;
         }
         
         public IEnumerable<BuildResult> GetMostRecentBuildResults(int count)
