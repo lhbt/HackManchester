@@ -1,1 +1,52 @@
-﻿
+﻿<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <div class="hero-unit">
+                <h1>Heisenberg</h1>
+                <h2>Tweets</h2>
+            </div>
+            <div>
+                <div class="countdown">
+                    <script type="text/javascript">
+                        var clock = $('.countdown').FlipClip(new Date(2013, 10, 28).getTime() / 1000 - new Date().getTime() / 1000, {
+                            clockFace: 'DailyCounter',
+                            countdown: true
+                        });
+                    </script>
+                </div>
+            </div>
+            <div style="display: none">
+                <ul>
+                    <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">{{member.username}}
+                        <p>{{member.name}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+<ul class="nav nav-pills">
+  <li><a href="#">Dashboard</a></li>
+  <li class="active"><a href="#/twitter">Tweets</a></li>
+  <li><a href="#/team">Team</a></li>
+</ul>
+<div class="row">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Author</th>
+                    <th>Tweet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tweet in tweets">
+                    <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
+                    <td>{{tweet.Author}}</td>
+                    <td ng-bind-html="tweet.Text | tweet"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

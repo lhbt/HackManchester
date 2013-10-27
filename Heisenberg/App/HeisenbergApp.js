@@ -18,7 +18,11 @@ heisenbergApp.config(['$routeProvider',
             templateUrl: 'App/Partials/Dashboard.html',
             controller: 'DashboardCtrl'
         }).
-        otherwise({
+          when('/twitter', {
+              templateUrl: 'App/Partials/Tweets.html',
+              controller: 'TweetsCtrl'
+          })
+        .otherwise({
             redirectTo: '/dashboard'
         });
   }]);
