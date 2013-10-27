@@ -25,28 +25,19 @@
         </div>
     </section>
 </div>
+<ul class="nav nav-pills">
+  <li class="active"><a href="#">Dashboard</a></li>
+  <li><a href="#/twitter">Tweets</a></li>
+  <li><a href="#/team">Team</a></li>
+</ul>
 <div class="row">
-        <div class="span4">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Author</th>
-                        <th>Tweet</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="tweet in tweets">
-                        <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
-                        <td>{{tweet.Author}}</td>
-                        <td ng-bind-html="tweet.Text | tweet"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="span8">
-            Source Control Stuff
-        </div>
+    <div class="span8">
+        Source Control Stuff
+            <div ng-model="minutessincecommit"></div>
+        {{minutessincecommit}}
+    </div>
+</div>
+
     </div>
 
 

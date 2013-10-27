@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
 
-    <link href="/Content/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/Content/bootstrap.css" rel="stylesheet" media="screen">
 </head>
 <body>
     @RenderBody()
@@ -22,6 +22,7 @@
     @Scripts.Render("~/App/TwitterFilters.js")
     @Scripts.Render("~/App/HeisenbergApp.js")
     @Scripts.Render("~/App/Dashboard/Dashboard.js")
+    @Scripts.Render("~/App/Dashboard/Tweets.js")
     @Scripts.Render("~/App/Dashboard/flipclock.js")
     @Scripts.Render("~/App/Dashboard/Countdown.js")
     @RenderSection("scripts", required: false)
