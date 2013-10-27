@@ -145,6 +145,7 @@
     <Compile Include="Controllers\NotificationsController.cs" />
     <Compile Include="Controllers\SourceControlController.cs" />
     <Compile Include="Controllers\TeamMembersController.cs" />
+    <Compile Include="Controllers\TraceController.cs" />
     <Compile Include="Controllers\TweetMessageController.cs" />
     <Compile Include="Controllers\TwitterHashtagController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

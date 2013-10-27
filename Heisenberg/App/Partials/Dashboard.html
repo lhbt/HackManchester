@@ -8,37 +8,45 @@
             <div>
                 <div class="countdown">
                     <script type="text/javascript">
-                        var clock = $('.countdown').FlipClip(new Date(2013,10,28).getTime()/1000 - new Date().getTime()/1000, {
+                        var clock = $('.countdown').FlipClip(new Date(2013, 10, 28).getTime() / 1000 - new Date().getTime() / 1000, {
                             clockFace: 'DailyCounter',
                             countdown: true
                         });
                     </script>
                 </div>
             </div>
-            <div>
-                <ul ng-repeat="tweet in tweets">
-                    <li>
-                        {{tweet.Timestamp | date:'HH:mm Z'}}
-                        <p>{{tweet.Author}}</p>
-                        <div ng-bind-html="tweet.Text | tweet"></div>
-                    </li>
-                </ul>
-            </div>
-
-            <div style="display:none">
+            <div style="display: none">
                 <ul>
-                    <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">
-                        {{member.username}}
+                    <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">{{member.username}}
                         <p>{{member.name}}</p>
                     </li>
                 </ul>
             </div>
-            <div class="span2">
-                Filter: <input ng-model="query">
-            </div>
-            <div>
-                <button type="button" ng-click="update()">Update</button>
-            </div>
         </div>
     </section>
 </div>
+<div class="row">
+        <div class="span4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Author</th>
+                        <th>Tweet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tweet in tweets">
+                        <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
+                        <td>{{tweet.Author}}</td>
+                        <td ng-bind-html="tweet.Text | tweet"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="span8">
+            Source Control Stuff
+        </div>
+    </div>
+
+

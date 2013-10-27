@@ -47,7 +47,7 @@ namespace Heisenberg.Twitter
 
         private static IEnumerable<Tweet> Map(TwitterSearchResult result)
         {
-            return result.Statuses.Select(x => new Tweet() { Text = x.Text, Timestamp = x.CreatedDate, Author = x.Author.ScreenName }).ToList();
+            return result.Statuses.Select(x => new Tweet() { Text = x.Text, Timestamp = x.CreatedDate.ToString("HH:mm"), Author = x.Author.ScreenName }).ToList();
         }
     }
 }
