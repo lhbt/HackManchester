@@ -48,3 +48,10 @@ heisenbergServices.factory('MostRecentBuildResults', ['$resource',
             query: { method: 'GET', params: {}, isArray: true }
         });
     }]);
+
+heisenbergServices.factory('Build', ['$resource',
+    function ($resource) {
+        return $resource('api/notifications/mostrecentbuildresults', {}, {
+            query: { method: 'GET', params: {}, isArray: true }
+        });
+    }]);
