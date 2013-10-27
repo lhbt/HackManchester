@@ -9,14 +9,14 @@
             <div>
                 <ul ng-repeat="tweet in tweets">
                     <li>
-                        {{tweet.Timestamp}}
+                        {{tweet.Timestamp | date:'HH:mm Z'}}
                         <p>{{tweet.Author}}</p>
-                        <p>{{tweet.Text}}</p>
+                        <div ng-bind-html="tweet.Text | tweet"></div>
                     </li>
                 </ul>
             </div>
 
-            <div >
+            <div style="display:none">
                 <ul>
                     <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">
                         {{member.username}}
