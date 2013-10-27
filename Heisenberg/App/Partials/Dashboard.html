@@ -24,20 +24,29 @@
             </div>
         </div>
     </section>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Author</th>
-                <th>Tweet</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="tweet in tweets">
-                <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
-                <td>{{tweet.Author}}</td>
-                <td ng-bind-html="tweet.Text | tweet"></td>
-            </tr>
-        </tbody>
-    </table>
 </div>
+<div class="row">
+        <div class="span4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Author</th>
+                        <th>Tweet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tweet in tweets">
+                        <td>{{tweet.Timestamp | date:'HH:mm Z'}}</td>
+                        <td>{{tweet.Author}}</td>
+                        <td ng-bind-html="tweet.Text | tweet"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="span8">
+            Source Control Stuff
+        </div>
+    </div>
+
+
