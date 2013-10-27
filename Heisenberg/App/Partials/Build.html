@@ -1,18 +1,17 @@
-﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <div class="hero-unit">
-                <h1>Heisenberg</h1>
-                <h2>Dashboard</h2>
-            </div>
-        </div>
-    </section>
+﻿<div class="page-header">
+    <h1>Heisenberg</h1>
+    <h2>Dashboard</h2>
+</div>
+<div>
+    <ul class="inline">
+        <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">{{member.username}}
+                        <p>{{member.name}}</p>
+        </li>
+    </ul>
 </div>
 <ul class="nav nav-pills">
     <li><a href="#">Dashboard</a></li>
     <li><a href="#/twitter">Tweets</a></li>
-    <li class="active"><a href="#/build">Build</a></li>
-    <li><a href="#/team">Team</a></li>
 </ul>
 <table class="table">
     
