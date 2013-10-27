@@ -155,11 +155,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\Dashboard\Build.js" />
     <Content Include="App\Dashboard\Countdown.js" />
     <Content Include="App\Dashboard\Dashboard.js" />
     <Content Include="App\Dashboard\flipclock.js" />
     <Content Include="App\Dashboard\Tweets.js" />
     <Content Include="App\HeisenbergApp.js" />
+    <Content Include="App\Partials\Build.html" />
     <Content Include="App\Partials\Dashboard.html" />
     <Content Include="App\Partials\Tweets.html" />
     <Content Include="App\Services.js" />
