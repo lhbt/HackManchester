@@ -11,6 +11,8 @@ namespace Heisenberg.Domain
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        public string AvatarUrl { get; set; }
+
         public override int GetHashCode()
         {
             unchecked

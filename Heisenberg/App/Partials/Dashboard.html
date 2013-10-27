@@ -15,8 +15,8 @@
                     </script>
                 </div>
             </div>
-            <div style="display: none">
-                <ul>
+            <div>
+                <ul class="inline">
                     <li ng-repeat="member in teamMembers | filter:query | orderBy:orderProp">{{member.username}}
                         <p>{{member.name}}</p>
                     </li>
@@ -26,10 +26,14 @@
     </section>
 </div>
 <ul class="nav nav-pills">
-  <li class="active"><a href="#">Dashboard</a></li>
-  <li><a href="#/twitter">Tweets</a></li>
-  <li><a href="#/team">Team</a></li>
+    <li class="active"><a href="#">Dashboard</a></li>
+    <li><a href="#/twitter">Tweets</a></li>
+    <li><a href="#/team">Team</a></li>
 </ul>
+<table class="table">
+    
+
+</table>
 <div class="row">
     <div class="span8">
         <div>{{minutessincecommit}}</div>
@@ -41,7 +45,6 @@
                             <th>Time</th>
                             <th>Author</th>
                             <th>Comment</th>
-                            <th>Files modified</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,11 +52,6 @@
                             <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
                             <td>{{commit.Author}}</td>
                             <td>{{commit.Comment}}</td>
-                            <td>
-                                <ul>
-                                    <li ng-repeat="file in commit.FilesModified">{{file}}</li>
-                                </ul>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -80,6 +78,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
 </div>
 

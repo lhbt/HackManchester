@@ -13,5 +13,6 @@ namespace Heisenberg.Domain.Interfaces
         int GetAmountOfBytesOfCode();
         int GetAmountOfMinutesSinceLastCommit();
         Dictionary<string, int> GetAmountOfCommitsPerHour();
+        IEnumerable<TeamMember> GetContributingMembers();
     }
 }
