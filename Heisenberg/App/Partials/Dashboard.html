@@ -41,7 +41,6 @@
                             <th>Time</th>
                             <th>Author</th>
                             <th>Comment</th>
-                            <th>Files modified</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -49,11 +48,6 @@
                             <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
                             <td>{{commit.Author}}</td>
                             <td>{{commit.Comment}}</td>
-                            <td>
-                                <ul>
-                                    <li ng-repeat="file in commit.FilesModified">{{file}}</li>
-                                </ul>
-                            </td>
                         </tr>
                     </tbody>
                 </table>
