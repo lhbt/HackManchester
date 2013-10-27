@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 using Heisenberg.Domain;
 using Heisenberg.Domain.Interfaces;
-using Newtonsoft.Json;
 
 namespace Heisenberg.Controllers
 {
@@ -19,18 +17,6 @@ namespace Heisenberg.Controllers
         public IEnumerable<Tweet> Get()
         {
             return _socialMediaWrapper.QueryHashtag("#hackmanchester");
-        }
-
-        [JsonObject(MemberSerialization.OptIn)]
-        public class TwitterStatusResponse
-        {
-            public TwitterStatusResponse()
-            {
-                Statuses = new List<string>();
-            }
-
-            [JsonProperty("Statuses")]
-            public List<string> Statuses;
         }
     }
 }

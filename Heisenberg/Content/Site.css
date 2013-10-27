@@ -15,7 +15,7 @@ body {
 }
 
 a {
-    color: #333;
+    color: #1e90ff;
     outline: none;
     padding-left: 3px;
     padding-right: 3px;
@@ -24,7 +24,7 @@ a {
 
     a:link, a:visited,
     a:active, a:hover {
-        color: #333;
+        color: #9400d3;
     }
 
     a:hover {
@@ -735,7 +735,6 @@ tr.pager td {
         float: none;
         width: auto;
     }
-
 
     /* footer
     ----------------------------------------------------------*/
