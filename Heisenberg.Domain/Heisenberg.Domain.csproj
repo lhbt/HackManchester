@@ -44,6 +44,7 @@
     <Compile Include="Commit.cs" />
     <Compile Include="Interfaces\IBuildStatusReadModel.cs" />
     <Compile Include="Interfaces\ISourceControlParser.cs" />
+    <Compile Include="Interfaces\ITracer.cs" />
     <Compile Include="Messages\BuildFailed.cs" />
     <Compile Include="Messages\BuildSucceeded.cs" />
     <Compile Include="Messaging\Event.cs" />

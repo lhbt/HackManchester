@@ -3,6 +3,7 @@ using Heisenberg.Domain.Messages;
 using Heisenberg.Domain.Messaging;
 using Heisenberg.FakeDataStore;
 using Heisenberg.GitHub;
+using Heisenberg.MongoDataStore;
 using Heisenberg.Twitter;
 using Microsoft.Practices.Unity;
 
@@ -17,6 +18,7 @@ namespace Heisenberg.Ioc.Unity
                 (new InjectionConstructor("lhbt", "hackmanchester"));
 
             container.RegisterType<IBuildStatusReadModel, FakeBuildStatusReadModel>();
+            container.RegisterType<ITracer, Tracer>();
 
             var bus = new FakeBus();
             var fakeReadModel = new FakeBuildStatusReadModel();
