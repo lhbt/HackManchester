@@ -17,28 +17,24 @@
 <table class="table">
 </table>
 <div class="row">
-    <div class="span8">
-        <div>{{minutessincecommit}}</div>
-        <div class="row">
-            <div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Author</th>
-                            <th>Comment</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="commit in commits">
-                            <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
-                            <td>{{commit.Author}}</td>
-                            <td>{{commit.Comment}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div>{{minutessincecommit}}</div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Author</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="commit in commits">
+                    <td>{{commit.TimeCommited | date:'HH:mm'}}</td>
+                    <td>{{commit.Author}}</td>
+                    <td>{{commit.Comment}}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <div class="row">
@@ -61,3 +57,5 @@
             </tbody>
         </table>
     </div>
+</div>
+
